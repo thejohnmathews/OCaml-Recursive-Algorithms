@@ -10,15 +10,29 @@ let rec first_duplicate numlist =
     if List.mem value rest then value
     else first_duplicate rest;;
 
-(*2.2 first_nonrepeating - first item that is not in the list more than once*)
-let rec helper_nonrepeating = function
-    ([], numlist) -> -10000
+(* 2.2 first_nonrepeating - first item that is not in the list more than once*)
+let rec helper_nonrepeating numlist = 
+  match numlist with
+  (* base case: 1st arg: list of remaining vals, 2nd arg: values seen/not repeated*)
+  | ([], numlist) -> -10000
+  (* check for nonrepeating value *)
   | (value::rest, numlist) ->
     if not(List.mem value rest || List.mem value numlist) then value
     else helper_nonrepeating(rest, value::numlist);;
 
 let rec first_nonrepeating = function
     (numlist) ->
+
+      (* start off by sending tuple *)
       helper_nonrepeating(numlist, []);;
 
-(*2.3 sumOfTwo - return boolean if a+b (!)= v*)
+(* 2.3 sumOfTwo - return boolean if a+b (!)= v *)
+
+  
+let rec sumOfTwo a b v =
+  match (a, b, v) with
+  | ([], [], v) -> false
+  | ([], b, v) -> false
+  | (a, b, v) -> 
+    if 
+
