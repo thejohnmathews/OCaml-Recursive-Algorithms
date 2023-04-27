@@ -27,12 +27,9 @@ let rec first_nonrepeating = function
       helper_nonrepeating(numlist, []);;
 
 (* 2.3 sumOfTwo - return boolean if a+b (!)= v *)
-
-  
 let rec sumOfTwo a b v =
   match (a, b, v) with
-  | ([], [], v) -> false
-  | ([], b, v) -> false
-  | (a, b, v) -> 
-    if 
+  | a == [] || b == [] -> false
+  | if List.hd a + List.hd b == v then true
+    else sumOfTwo(List.tl a, b, v) || sumOfTwo(a, List.tl b, v);;
 
