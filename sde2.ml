@@ -20,16 +20,14 @@ let rec helper_nonrepeating numlist =
     if not(List.mem value rest || List.mem value numlist) then value
     else helper_nonrepeating(rest, value::numlist);;
 
-let rec first_nonrepeating = function
-    (numlist) ->
-
+let rec first_nonrepeating = function (numlist) ->
       (* start off by sending tuple *)
       helper_nonrepeating(numlist, []);;
 
 (* 2.3 sumOfTwo - return boolean if a+b (!)= v *)
 let rec sumOfTwo (a, b, v) =
   match (a, b) with 
-  (* if lists are empty there is not a pair to make it true*)
+  (* base case: if lists are empty there is not a pair to make it true*)
   | ([], _) -> false
   | (_, []) -> false
   (* if lists have values, check a + b = v*)
@@ -38,3 +36,14 @@ let rec sumOfTwo (a, b, v) =
     (* call function again with tails of both lists*)
     else sumOfTwo(aTail, b, v) || sumOfTwo(a, bTail, v);;
 
+(* 2.4 cyk_sublists - returns all integer pairs that could add up to n *)
+let rec helper_cyk (limit, i, numlist) =
+  match (limit, i, numlist) with
+  (* add next pairing*)
+  | (limit, i, numlist) when i - limit > 0 -> helper_cyk(limit + 1, i, (abs (i - limit), limit) :: numlist)
+  (*base case: return all pairings*)
+  | _ -> numlist 
+
+let rec cyk_sublists number =
+  (*send off triple*)
+  helper_cyk(1, number, [])
