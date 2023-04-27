@@ -27,9 +27,14 @@ let rec first_nonrepeating = function
       helper_nonrepeating(numlist, []);;
 
 (* 2.3 sumOfTwo - return boolean if a+b (!)= v *)
-let rec sumOfTwo a b v =
-  match (a, b, v) with
-  | a == [] || b == [] -> false
-  | if List.hd a + List.hd b == v then true
-    else sumOfTwo(List.tl a, b, v) || sumOfTwo(a, List.tl b, v);;
+let rec sumOfTwo (a, b, v) =
+  match (a, b) with 
+  (* if lists are empty there is not a pair to make it true*)
+  | ([], _) -> false
+  | (_, []) -> false
+  (* if lists have values, check a + b = v*)
+  | (aHead :: aTail, bHead :: bTail) ->
+    if aHead + bHead = v then true
+    (* call function again with tails of both lists*)
+    else sumOfTwo(aTail, b, v) || sumOfTwo(a, bTail, v);;
 
