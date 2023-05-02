@@ -1,4 +1,4 @@
-# sde2.caml - John Mathews CPSC 3520
+# sde2.caml - John Mathews CPSC 3520 - 100/100
 
 Pledge: On my honor I have neither given nor received aid on this exam.
 
